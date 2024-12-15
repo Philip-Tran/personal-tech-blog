@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@nuxtjs/supabase",
     "nuxt-tiptap-editor",
+    "@pinia/nuxt",
   ],
   runtimeConfig: {
     public: {

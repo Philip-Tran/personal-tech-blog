@@ -33,7 +33,7 @@ model Post {
   content         String
   excerpt         String?
   metaDescription String?
-  published       Boolean   @default(false)
+  published       Boolean   @default(true)
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
   publishedAt     DateTime?
