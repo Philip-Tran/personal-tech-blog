@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1>haha</h1>
-    <slot />
+    Login page
   </div>
 </template>
 

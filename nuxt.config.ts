@@ -6,6 +6,9 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "shadcn-nuxt",
     "@nuxtjs/color-mode",
+    "@nuxtjs/supabase",
+    "@prisma/nuxt",
+    "nuxt-tiptap-editor",
   ],
   shadcn: {
     /**
@@ -17,5 +20,8 @@ export default defineNuxtConfig({
      * @default "./components/ui"
      */
     componentDir: "./components/ui",
+  },
+  tiptap: {
+    prefix: "Tiptap", //prefix for Tiptap imports, composables not included
   },
 });

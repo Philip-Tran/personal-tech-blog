@@ -11,11 +11,15 @@
   },
   "dependencies": {
     "@nuxtjs/color-mode": "^3.5.2",
+    "@nuxtjs/supabase": "^1.4.4",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "@prisma/nuxt": "^0.1.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.468.0",
     "nuxt": "^3.14.1592",
+    "nuxt-tiptap-editor": "^2.1.4",
+    "prisma": "^6.0.1",
     "radix-vue": "^1.9.11",
     "shadcn-nuxt": "^0.11.3",
     "tailwind-merge": "^2.5.5",
@@ -24,6 +28,7 @@
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@prisma/client": "^6.0.1",
     "typescript": "^5.7.2"
   }
 }
