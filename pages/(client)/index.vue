@@ -1,13 +1,21 @@
 <script lang="ts" setup>
 definePageMeta({
-    layout: "(client)-app-default-layout"
+    layout: "app-default-layout"
 })
 import TiptapEditor from '~/components/TiptapEditor.vue';
+const user = useSupabaseUser()
+const handle = () => {
+    console.log("click")
+    console.log(user.value)
+}
 </script>
 
 <template>
     <div>
-        <Button>Click me</Button>
+        <h1>
+            {{ user }}
+        </h1>
+        <Button @click="handle">Click me</Button>
         <h1 class="text-red-500"> Welcome to the homepage</h1>
         <AppAlert>
             This is an auto-imported component

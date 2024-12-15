@@ -7,9 +7,21 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
     "@nuxtjs/color-mode",
     "@nuxtjs/supabase",
-    "@prisma/nuxt",
     "nuxt-tiptap-editor",
   ],
+  runtimeConfig: {
+    public: {
+      appUrl: process.env.APP_URL,
+      supabaseUrl: process.env.SUPABASE_URL,
+      supabaseAnonKey: process.env.SUPABASE_ANON_KEY,
+    },
+  },
+  supabase: {
+    redirectOptions: {
+      login: "/login",
+      callback: "/",
+    },
+  },
   shadcn: {
     /**
      * Prefix for all the imported component

@@ -14,8 +14,27 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model post {
-  id        String   @id @default(uuid())
-  content   String
+enum UserRole {
+  ADMIN
+  USER
+}
+
+model User {
+  id        String   @id @unique
+  email     String   @unique
+  role      UserRole @default(USER)
   createdAt DateTime @default(now())
+}
+
+model Post {
+  id              String    @id @default(cuid())
+  title           String
+  slug            String    @unique
+  content         String
+  excerpt         String?
+  metaDescription String?
+  published       Boolean   @default(false)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  publishedAt     DateTime?
 }
