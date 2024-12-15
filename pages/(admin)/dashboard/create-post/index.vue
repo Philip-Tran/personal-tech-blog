@@ -2,7 +2,9 @@
   <div class="w-full min-h-screen">
     <div class="w-full flex items-center justify-between min-h-10 py-1 px-4 lg:py-2 lg:px-8">
       <div class="">
-        <Button variant="ghost">Back</Button>
+        <NuxtLink to="/dashboard">
+          <Button variant="ghost">Back</Button>
+        </NuxtLink>
       </div>
       <Button @click="handleFormSubmit">Post</Button>
     </div>

@@ -27,6 +27,7 @@
     "pinia": "^2.3.0",
     "prisma": "^6.0.1",
     "radix-vue": "^1.9.11",
+    "reading-time-estimator": "^1.11.0",
     "shadcn-nuxt": "^0.11.3",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
