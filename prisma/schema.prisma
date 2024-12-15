@@ -31,7 +31,6 @@ model Post {
   title           String
   slug            String    @unique
   content         String
-  excerpt         String?
   metaDescription String?
   published       Boolean   @default(true)
   createdAt       DateTime  @default(now())
