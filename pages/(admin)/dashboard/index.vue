@@ -5,8 +5,12 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
-    dash board
+  <div class="px-4 lg-px-10 xl:px-12 py-6 lg-py-12">
+    <div class="flex flex-col ">
+      <div>
+        <span class="text-2xl lg:text-3xl font-medium">Posts</span>
+      </div>
+    </div>
   </div>
 </template>
 

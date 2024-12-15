@@ -16,6 +16,23 @@ module.exports = {
       },
     },
     extend: {
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            "--tw-prose-bullets": theme("colors.blue.500"),
+            li: {
+              p: {
+                margin: 0,
+              },
+            },
+            p: {},
+          },
+        },
+      }),
+      fontFamily: {
+        serif: ["Palatino", "serif"],
+        garamond: ["Garamond", "serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

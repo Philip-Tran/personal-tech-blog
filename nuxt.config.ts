@@ -9,6 +9,12 @@ export default defineNuxtConfig({
     "@nuxtjs/supabase",
     "nuxt-tiptap-editor",
     "@pinia/nuxt",
+    [
+      "@vee-validate/nuxt",
+      {
+        autoImports: false,
+      },
+    ],
   ],
   runtimeConfig: {
     public: {

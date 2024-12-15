@@ -25,29 +25,20 @@ import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 const items = [
     {
         title: "Home",
-        url: "/",
+        url: "/dashboard",
         icon: Home,
     },
     {
-        title: "Books",
-        url: "/books",
+        title: "Posts",
+        url: "/dashboard/posts",
         icon: Inbox,
     },
     {
-        title: "Senflow",
-        url: "/senflows",
-        icon: Calendar,
-    },
-    {
         title: "Analytic",
-        url: "/analytic",
+        url: "/dashboard/analytic",
         icon: Search,
     },
-    {
-        title: "Settings",
-        url: "/settings",
-        icon: Settings,
-    },
+
 ]
 </script>
 
@@ -74,6 +65,12 @@ const items = [
                     </DropdownMenu>
                 </SidebarMenuItem>
             </SidebarMenu>
+            <div class="mt-7
+            ">
+                <NuxtLink to="/dashboard/create-post">
+                    <Button class="w-full" variant="outline">New Post</Button>
+                </NuxtLink>
+            </div>
         </SidebarHeader>
         <SidebarContent>
             <SidebarGroup>
