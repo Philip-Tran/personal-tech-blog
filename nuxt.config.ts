@@ -25,12 +25,12 @@ export default defineNuxtConfig({
   },
   supabase: {
     redirect: false,
-    redirectOptions: {
-      login: "/login",
-      callback: "/dashboard",
-      include: ["/dashboard"],
-      exclude: ["/"],
-    },
+    // redirectOptions: {
+    //   login: "/login",
+    //   callback: "/dashboard",
+    //   include: ["/dashboard"],
+    //   exclude: ["/"],
+    // },
   },
   shadcn: {
     /**

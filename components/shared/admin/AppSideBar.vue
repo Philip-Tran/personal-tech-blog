@@ -57,23 +57,23 @@ const handleLogout = async () => {
 </script>
 
 <template>
-    <Sidebar class="bg-slate-100">
+    <Sidebar class="bg-gray-900 text-slate-50">
         <SidebarHeader>
             <SidebarMenu>
                 <SidebarMenuItem>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <SidebarMenuButton>
-                                Select Workspace
+                                Q Writes
                                 <ChevronDown class="ml-auto" />
                             </SidebarMenuButton>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent class="w-[--radix-popper-anchor-width]">
                             <DropdownMenuItem>
-                                <span>Acme Inc</span>
+                                <span>Tech Blog</span>
                             </DropdownMenuItem>
                             <DropdownMenuItem>
-                                <span>Acme Corp.</span>
+                                <span>Personal</span>
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -82,10 +82,11 @@ const handleLogout = async () => {
             <div class="mt-7 flex flex-col space-y-2 lg:space-y-3
             ">
                 <NuxtLink to="/">
-                    <Button class="w-full" variant="outline">Visit Site</Button>
+                    <Button class="w-full text-slate-600" variant="outline">Visit Site</Button>
                 </NuxtLink>
                 <NuxtLink to="/dashboard/create-post">
-                    <Button class="w-full" variant="default">New Post</Button>
+                    <Button class="w-full bg-yellow-500 text-slate-900 hover:bg-yellow-600" variant="default">New
+                        Post</Button>
                 </NuxtLink>
             </div>
         </SidebarHeader>

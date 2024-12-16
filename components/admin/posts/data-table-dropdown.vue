@@ -38,7 +38,7 @@ const handleDeletePost = async (id: string) => {
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                 <DropdownMenuItem @click="goToBook(post.slug)">Start reading</DropdownMenuItem>
-                <DropdownMenuItem @click="copy(post.slug)">
+                <DropdownMenuItem @click="copy(post.id)">
                     Copy Book Id
                 </DropdownMenuItem>
                 <DropdownMenuItem>View senflow for this book</DropdownMenuItem>
@@ -57,7 +57,7 @@ const handleDeletePost = async (id: string) => {
                 <DialogDescription>This action can not be undo </DialogDescription>
             </DialogHeader>
             <div class="grid gap-4">
-                <Button size="sm" class="px-3" @click="handleDeletePost(post.slug)">
+                <Button size="sm" class="px-3" @click="handleDeletePost(post.id)">
                     Confirm delete
                 </Button>
             </div>
