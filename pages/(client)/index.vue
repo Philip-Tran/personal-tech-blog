@@ -14,25 +14,25 @@ onBeforeMount(async () => {
     await postStore.getPosts()
 })
 
-
 </script>
 
 <template>
     <div v-if="!postStore.posts" class="w-full min-h-screen py-24 lg:py-24 xl:py-32 px-4 md:px-10">
-        <div class="lg:max-w-[800px] self-center mx-auto">
+        <div class="lg:max-w-[700px] self-center mx-auto">
             <Skeleton class="h-4  w-[150px] mb-24" />
             <Skeleton class="h-32  w-full mb-5" />
             <Skeleton class="h-32  w-full mb-5" />
             <Skeleton class="h-32  w-full mb-5" />
         </div>
     </div>
-    <div v-else class="w-full min-h-screen py-24 lg:py-24 xl:py-28 px-4 md:px-10">
-        <div class="lg:max-w-[800px] self-center mx-auto">
-            <div class="mb-12 lg:mb-16  lg:p-3">
-                <h5 class="text-2xl lg:text-3xl xl:text-4xl font-bold text-slate-900 mb-4">Posts</h5>
+
+    <!-- Main -->
+    <div v-else class="w-full min-h-screen py-16 lg:py-24 xl:py-28 px-4 md:px-10">
+        <div class="lg:max-w-[700px] self-center mx-auto">
+            <div class="mb-12 lg:mb-12 lg:p-3">
+                <h5 class="text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-medium text-slate-900 mb-4">Posts</h5>
                 <span>{{ formatDate(Date.now()) }}</span>
             </div>
-
             <!-- post cards -->
             <div class="flex flex-col space-y-8 lg:space-y-16">
                 <div class="relative lg:hover:bg-gray-100 rounded-lg lg:p-3" v-for="(post, index) in postStore.posts"

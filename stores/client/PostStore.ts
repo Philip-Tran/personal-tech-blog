@@ -37,7 +37,7 @@ export const usePostStore = defineStore("postClient", () => {
   const getSinglePost = async (slug: string) => {
     try {
       state.isLoading = true;
-      const post: Post = await $fetch(`/api/post/${slug}`, {
+      const post = await $fetch(`/api/post/${slug}`, {
         method: "GET",
       });
       if (post) {

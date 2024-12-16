@@ -20,13 +20,16 @@ export default defineNuxtConfig({
     public: {
       appUrl: process.env.APP_URL,
       supabaseUrl: process.env.SUPABASE_URL,
-      supabaseAnonKey: process.env.SUPABASE_ANON_KEY,
+      supabaseAnonKey: process.env.SUPABASE_KEY,
     },
   },
   supabase: {
+    redirect: false,
     redirectOptions: {
       login: "/login",
-      callback: "/",
+      callback: "/dashboard",
+      include: ["/dashboard"],
+      exclude: ["/"],
     },
   },
   shadcn: {

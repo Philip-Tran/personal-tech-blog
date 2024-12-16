@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
-import { Calendar, ChevronDown, Home, Inbox, Search, Settings } from "lucide-vue-next"
+import { BadgeCheck, Calendar, ChevronDown, ChevronsUpDown, Home, Inbox, LogOut, Search, Settings, Sparkles } from "lucide-vue-next"
 
 import {
     Sidebar,
@@ -40,6 +40,20 @@ const items = [
     },
 
 ]
+
+const user = useSupabaseUser()
+const supabase = useSupabaseClient()
+
+const handleLogout = async () => {
+    if (user.value) {
+        const { error } = await supabase.auth.signOut()
+        navigateTo("/")
+        if (error) {
+            console.error("Error logout:", (error.message))
+        }
+    }
+}
+
 </script>
 
 <template>
@@ -65,10 +79,13 @@ const items = [
                     </DropdownMenu>
                 </SidebarMenuItem>
             </SidebarMenu>
-            <div class="mt-7
+            <div class="mt-7 flex flex-col space-y-2 lg:space-y-3
             ">
+                <NuxtLink to="/">
+                    <Button class="w-full" variant="outline">Visit Site</Button>
+                </NuxtLink>
                 <NuxtLink to="/dashboard/create-post">
-                    <Button class="w-full" variant="outline">New Post</Button>
+                    <Button class="w-full" variant="default">New Post</Button>
                 </NuxtLink>
             </div>
         </SidebarHeader>
@@ -89,14 +106,69 @@ const items = [
                 </SidebarGroupContent>
             </SidebarGroup>
         </SidebarContent>
-        <SidebarFooter class="flex flex-row">
-            <Avatar>
-                <AvatarImage src="https://github.com/radix-vue.png" alt="@radix-vue" />
-                <AvatarFallback><img src="/favicon.ico" /></AvatarFallback>
-            </Avatar>
-            <div>
-                quyet@gmail.com
-            </div>
+
+        <SidebarFooter>
+            <SidebarMenu>
+                <SidebarMenuItem>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger as-child>
+                            <SidebarMenuButton size="lg"
+                                class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+                                <Avatar class="h-8 w-8 rounded-lg">
+                                    <!-- <AvatarImage :src="user.avatar" :alt="user.name" /> -->
+                                    <AvatarFallback class="rounded-lg">
+                                        CN
+                                    </AvatarFallback>
+                                </Avatar>
+                                <div class="grid flex-1 text-left text-sm leading-tight">
+                                    <span class="truncate font-semibold"> {{ user?.email }}</span>
+                                    <span class="truncate text-xs"> {{ user?.user_metadata.name }}</span>
+                                </div>
+                                <ChevronsUpDown class="ml-auto size-4" />
+                            </SidebarMenuButton>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent class="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+                            side="bottom" align="end" :side-offset="4">
+                            <DropdownMenuLabel class="p-0 font-normal">
+                                <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                                    <Avatar class="h-8 w-8 rounded-lg">
+                                        <!-- <AvatarImage :src="user.avatar" :alt="user.name" /> -->
+                                        <AvatarFallback class="rounded-lg">
+                                            CN
+                                        </AvatarFallback>
+                                    </Avatar>
+                                    <div class="grid flex-1 text-left text-sm leading-tight">
+                                        <span class="truncate font-semibold"> user.name </span>
+                                        <span class="truncate text-xs"> user.email </span>
+                                    </div>
+                                </div>
+                            </DropdownMenuLabel>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuGroup>
+                                <DropdownMenuItem>
+                                    <Sparkles />
+                                    Upgrade to Pro
+                                </DropdownMenuItem>
+                            </DropdownMenuGroup>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuGroup>
+                                <DropdownMenuItem>
+                                    <BadgeCheck />
+                                    Account
+                                </DropdownMenuItem>
+                            </DropdownMenuGroup>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem>
+                                <Button variant="link" class="w-full p-0 justify-start py-0 h-min"
+                                    @click="handleLogout">
+                                    <LogOut />
+                                    <span>Log out</span>
+                                </Button>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </SidebarMenuItem>
+            </SidebarMenu>
         </SidebarFooter>
     </Sidebar>
 </template>

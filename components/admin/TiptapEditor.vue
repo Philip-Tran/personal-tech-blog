@@ -11,8 +11,29 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  modelValue: string;
+  modelValue: string | undefined;
 }>();
+
+import { TiptapCodeBlock } from '~/composables/tiptapExt';
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
+import { VueNodeViewRenderer } from '@tiptap/vue-3'
+
+
+import css from 'highlight.js/lib/languages/css'
+import js from 'highlight.js/lib/languages/javascript'
+import ts from 'highlight.js/lib/languages/typescript'
+import html from 'highlight.js/lib/languages/xml'
+
+import { all, createLowlight } from 'lowlight'
+import CodeBlockComponent from './CodeBlockComponent.vue'
+
+// create a lowlight instance
+const lowlight = createLowlight(all)
+lowlight.register('html', html)
+lowlight.register('css', css)
+lowlight.register('js', js)
+lowlight.register('ts', ts)
+
 
 const emit = defineEmits(['update:modelValue'])
 
@@ -21,11 +42,12 @@ const editor = useEditor({
   onUpdate: ({ editor }) => {
     emit('update:modelValue', editor.getHTML())
   },
-  extensions: [TiptapStarterKit],
+  extensions: [TiptapStarterKit, TiptapPlaceholder.configure({ placeholder: 'write some thing...' }), TiptapCodeBlock, CodeBlockLowlight
+    .configure({ lowlight }),],
   editorProps: {
     attributes: {
       spellcheck: "true",
-      class: "prose w-full w-[700px] text-lg font-serif leading-relaxed text-grey-700 prose-sm  min-h-60 overflow-y-auto focus:outline-none"
+      class: "prose w-full w-[700px]  text-lg font-serif leading-relaxed text-grey-700 prose-sm  min-h-60 overflow-y-auto focus:outline-none"
     },
     transformPastedText(text) {
       return text.toUpperCase()
@@ -35,11 +57,11 @@ const editor = useEditor({
 
 watch(
   () => props.modelValue,
+  //@ts-ignore
   (newValue: string) => {
     if (editor.value) {
       const isSame = editor.value.getHTML() === newValue;
 
-      // If the new value is already the same, skip updating the content
       if (!isSame) {
         editor.value.commands.setContent(newValue, false);
       }
@@ -51,3 +73,14 @@ onBeforeUnmount(() => {
   unref(editor)?.destroy();
 });
 </script>
+
+<style>
+/* Placeholder (at the top) */
+p.is-editor-empty:first-child::before {
+  color: var(--gray-4);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+</style>

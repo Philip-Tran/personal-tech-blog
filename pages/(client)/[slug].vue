@@ -3,9 +3,8 @@ definePageMeta({
     layout: "(client)-app-default-layout",
 });
 
-import { getReadingTime } from "~/lib/utils";
+import { getReadingTime, formatDate } from "~/lib/utils";
 import { type Post } from "~/stores/client/PostStore";
-import { formatDate } from "~/lib/utils";
 import { usePostStore } from "~/stores/client/PostStore";
 
 import { useRoute } from "vue-router";

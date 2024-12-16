@@ -22,14 +22,10 @@ const usePostStore = defineStore("post", () => {
 
   const addPost = async (values: Post) => {
     try {
-      const { data, status } = await $fetch("/api/post/create", {
+      const { data } = await $fetch("/api/post/create", {
         method: "POST",
         body: values,
       });
-
-      //   if (status..value) {
-      //       throw new Error(error.value.message);
-      //     }
 
       return data;
     } catch (error) {

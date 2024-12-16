@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 definePageMeta({
-  layout: "(admin)-default"
+  layout: "(admin)-default",
+  middleware: ["admin"]
 })
+const user = useSupabaseUser()
 </script>
 
 <template>
@@ -9,6 +11,7 @@ definePageMeta({
     <div class="flex flex-col ">
       <div>
         <span class="text-2xl lg:text-3xl font-medium">Posts</span>
+        <p>{{ user }}</p>
       </div>
     </div>
   </div>
