@@ -8,6 +8,7 @@ export default defineEventHandler(async (event) => {
       },
       take: 10,
       select: {
+        id: true,
         slug: true,
         title: true,
         content: true,

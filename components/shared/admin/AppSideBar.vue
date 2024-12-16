@@ -57,7 +57,7 @@ const handleLogout = async () => {
 </script>
 
 <template>
-    <Sidebar class="">
+    <Sidebar class="bg-slate-100">
         <SidebarHeader>
             <SidebarMenu>
                 <SidebarMenuItem>
