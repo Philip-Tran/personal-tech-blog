@@ -21,13 +21,13 @@ const handleGitHubLogin = async () => {
 
 <template>
   <div v-if="!user" class="min-h-screen flex flex-col justify-center items-center bg-gray-100 px-4 sm:px-6 lg:px-8">
-    <div class="fixed top-0 right-0 px-4">
+    <div class="fixed w-full py-2 top-0 right-0 px-4">
       <NuxtLink to="/">
         <Button variant="link">Home</Button>
       </NuxtLink>
     </div>
     <div class="w-full max-w-md space-y-8">
-      <div>
+      <div class="-mt-20">
         <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900">
           Sign In
         </h2>
