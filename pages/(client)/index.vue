@@ -53,7 +53,9 @@ onBeforeMount(async () => {
                         </div>
 
                     </div>
-                    <Separator class="mt-3 lg:mx-3 -ml-3" />
+                    <div class="lg:px-3">
+                        <Separator class="mt-3" />
+                    </div>
                 </div>
             </div>
             <div class="flex justify-center mt-20 lg:mt-32">

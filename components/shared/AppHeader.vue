@@ -9,15 +9,15 @@ const supabase = useSupabaseClient()
     <header class="flex items-center justify-between">
       <div>
         <NuxtLink to="/">
-          <div class="text-2xl font-bold">
+          <div class="text-lg lg:text-2xl font-bold">
             <span class="">Tran</span>
             <span class="text-yellow-700"> Quyet</span>
           </div>
         </NuxtLink>
       </div>
-      <div class="lg:w-2/3 flex items-center justify-end space-x-9">
+      <div class="lg:w-2/3 flex items-center justify-end  space-x-1 lg:space-x-9">
         <nav>
-          <div v-if="user && user.email === 'quyetcoccoc@gmail.com'" class="flex items-center space-x-3">
+          <div v-if="user && user.email === 'quyetcoccoc@gmail.com'" class="flex items-center space-x-1 lg:space-x-3">
             <NuxtLink to="/dashboard">
               <Button variant="ghost">Dashboard</Button>
             </NuxtLink>
@@ -28,7 +28,7 @@ const supabase = useSupabaseClient()
         </nav>
         <Dialog>
           <DialogTrigger as-child>
-            <div class="p-1 cursor-pointer hover:bg-gray-100 rounded-sm">
+            <div class="lg:p-1 cursor-pointer hover:bg-gray-100 ml-0 rounded-sm">
               <MenuIcon :size=28 />
             </div>
           </DialogTrigger>

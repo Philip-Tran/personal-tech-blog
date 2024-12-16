@@ -11,20 +11,8 @@ const statsStore = useStatsStore()
         <div class="bg-slate-100 p-4 xl:p-6 rounded-sm shadow-sm flex flex-col items-start justify-start">
             <span class="text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-medium 2xl:mb-3 text-slate-800">{{
                 statsStore.totalPublishedPost
-                }}</span>
+            }}</span>
             <span class="text-base text-slate-600">Total posts being written</span>
-        </div>
-        <div class="bg-slate-200 p-4 rounded-lg shadow-md flex flex-col items-center justify-center">
-            <span class="text-2xl font-bold text-slate-800">24,990</span>
-            <span class="text-sm text-slate-600">Words being written</span>
-        </div>
-        <div class="bg-slate-200 p-4 rounded-lg shadow-md flex flex-col items-center justify-center">
-            <span class="text-2xl font-bold text-slate-800">1000</span>
-            <span class="text-sm text-slate-600">Unique visitors</span>
-        </div>
-        <div class="bg-slate-200 p-4 rounded-lg shadow-md flex flex-col items-center justify-center">
-            <span class="text-2xl font-bold text-slate-800">34</span>
-            <span class="text-sm text-slate-600">Total posts being written</span>
         </div>
     </div>
 
