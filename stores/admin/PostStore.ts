@@ -39,7 +39,26 @@ const usePostStore = defineStore(
       }
     };
 
-    return { state, addPost };
+    const deletePost = async (postId: string) => {
+      try {
+        const data = await $fetch("/api/admin/delete-post", {
+          method: "DELETE",
+          body: { id: postId },
+        });
+        if (data) {
+          state.value.message = data.message;
+          return { success: true };
+        } else {
+          state.value.message = "Error";
+          console.log("error");
+        }
+      } catch (error) {
+        console.error("Error deleting post:", (error as Error).message);
+        return null;
+      }
+    };
+
+    return { state, addPost, deletePost };
   },
   {
     persist: true,

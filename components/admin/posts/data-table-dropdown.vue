@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-vue-next';
 import { Dialog, DialogContent, DialogTrigger, DialogDescription, DialogHeader, DialogTitle } from '~/components/ui/dialog';
+import { usePostStore } from '~/stores/admin/PostStore';
+import { nativeEnum } from 'zod';
 
 defineProps<{
     post: {
@@ -12,7 +14,7 @@ defineProps<{
     };
 }>();
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const postStoreAdmin = usePostStore()
 
 function copy(id: string) {
     navigator.clipboard.writeText(id);
@@ -22,8 +24,14 @@ const visitPost = (slug: string) => {
     navigateTo(`/${slug}`)
 };
 
+const router = useRouter()
 const handleDeletePost = async (id: string) => {
     console.log("delete book", id)
+    const result = await postStoreAdmin.deletePost(id)
+    if (result?.success) {
+        console.log("goooooooooo")
+        router.go(0)
+    }
 };
 </script>
 
@@ -54,7 +62,7 @@ const handleDeletePost = async (id: string) => {
             if (target?.closest('[data-sonner-toaster]')) return event.preventDefault()
         }">
             <DialogHeader>
-                <DialogTitle>Delete book</DialogTitle>
+                <DialogTitle>Delete post</DialogTitle>
                 <DialogDescription>This action can not be undo </DialogDescription>
             </DialogHeader>
             <div class="grid gap-4">

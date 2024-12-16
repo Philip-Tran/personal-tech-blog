@@ -11,6 +11,8 @@ import type { Post } from '@prisma/client';
 import dataTable from "~/components/admin/posts/data-table.vue";
 import { columns } from "~/components/admin/posts/columns"
 import StatCards from './(components)/StatCards.vue';
+import { File } from 'lucide-vue-next';
+import NoPostNotice from './(components)/NoPostNotice.vue';
 
 const user = useSupabaseUser()
 const statsStore = useStatsStore()
@@ -34,10 +36,11 @@ onBeforeMount(async () => {
           <Button>New Post</Button>
         </NuxtLink>
       </div>
-      <StatCards />
+      <StatCards v-if="statsStore.totalPost !== 0" />
+      <NoPostNotice v-else />
       <div>
         <dataTable :columns="columns" :data="postStore.posts || []" v-if="postStore.posts" />
-        <div v-else>
+        <div v-if="statsStore.totalPost !== 0">
           <Skeleton class="w-full h-96 rounded-md" />
         </div>
       </div>
