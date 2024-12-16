@@ -46,7 +46,7 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       spellcheck: "true",
-      class: "prose w-full w-[700px]  text-xl font-serif leading-relaxed text-grey-700 prose-sm prose-h1:font-sans prose-h2:font-sans  prose-h3:font-sans  prose-h4:font-sans  prose-h5:font-sans  min-h-60 overflow-y-auto focus:outline-none"
+      class: "prose w-full lg:w-[700px]  text-xl w-full mx-0 font-serif leading-8 lg:leading-relaxed text-grey-700 prose-sm prose-h1:font-sans prose-h2:font-sans  prose-h3:font-sans  prose-h4:font-sans  prose-h5:font-sans  min-h-60 overflow-y-auto focus:outline-none"
     },
     transformPastedText(text) {
       return text

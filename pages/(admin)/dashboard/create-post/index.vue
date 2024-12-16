@@ -67,10 +67,10 @@ const handleFormSubmit = handleSubmit(async (values) => {
 
 <template>
   <div class="w-full min-h-screen">
-    <div class="w-full flex items-center justify-between min-h-10 py-1 px-4 lg:py-2 lg:px-8">
+    <div class="w-full flex items-center justify-between min-h-10 py-2 px-4 lg:py-4 lg:px-8">
       <div class="">
         <NuxtLink to="/dashboard">
-          <Button variant="ghost">Back</Button>
+          <Button variant="link" class="pl-0">Back</Button>
         </NuxtLink>
       </div>
       <!-- dialog -->
@@ -125,10 +125,12 @@ const handleFormSubmit = handleSubmit(async (values) => {
         </DialogContent>
       </Dialog>
     </div>
-    <div class="flex flex-col justify-center">
-      <div class="max-w-[700px] w-[700px] mx-auto pb-24 lg:pb-32 xl:pb-[600px] 2xl:pb-[700px]">
-        <div class="mb-8 lg:mb-16">
-          <Input class="border-none rounded-none text-xl font-medium p-0 ring-0 focus:ring-0 focus-visible:ring-0"
+    <div class="flex flex-col justify-center p-4 ">
+      <div
+        class="w-full md:max-w-[640px] lg:max-w-[700px] xl:w-[700px] mx-auto pb-24 lg:pb-32 xl:pb-[600px] 2xl:pb-[700px]">
+        <div class="mb-8 lg:mb-16 ">
+          <Input
+            class="w-full border-none text-wrap rounded-none text-xl font-medium p-0 ring-0 focus:ring-0 focus-visible:ring-0"
             placeholder="Post title goes here" v-model="title" />
         </div>
         <AdminTiptapEditor v-model="content" />
