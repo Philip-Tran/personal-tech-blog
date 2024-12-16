@@ -11,15 +11,6 @@ import { toast } from 'vue-sonner'
 import { toTypedSchema } from "@vee-validate/zod";
 import { useForm } from "vee-validate"
 import { useRouter } from "vue-router";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "~/components/ui/select";
 
 const { values, defineField, handleSubmit, errors } = useForm({
   validationSchema: toTypedSchema(addPostSchema)
@@ -32,13 +23,28 @@ const [title] = defineField("title")
 const [content] = defineField("content")
 const [published] = defineField("published")
 
-// Ensure that the `published` value is a boolean (default to `true` if not set)
+watch(
+  () => ({
+    title: title.value,
+    published: published.value,
+    content: content.value
+  }),
+  (newValues) => {
+    // @ts-ignore
+    postStore.state.post.title = newValues.title
+    //@ts-ignore
+    postStore.state.post.content = newValues.content
+    //@ts-ignore
+    postStore.state.post.published = newValues.published
+  }
+)
+
 const publishedBoolean = computed({
   get() {
     return published.value === true;
   },
   set(value: boolean) {
-    published.value = value;  // Keep it as a boolean
+    published.value = value;
   }
 });
 
@@ -122,7 +128,6 @@ const handleFormSubmit = handleSubmit(async (values) => {
     <div class="flex flex-col justify-center">
       <div class="max-w-[700px] w-[700px] mx-auto pb-24 lg:pb-32 xl:pb-[600px] 2xl:pb-[700px]">
         <div class="mb-8 lg:mb-16">
-          <div>{{ values }}</div>
           <Input class="border-none rounded-none text-xl font-medium p-0 ring-0 focus:ring-0 focus-visible:ring-0"
             placeholder="Post title goes here" v-model="title" />
         </div>

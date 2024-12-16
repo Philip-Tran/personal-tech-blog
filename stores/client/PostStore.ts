@@ -1,6 +1,5 @@
-import { defineStore } from "pinia";
-
 export interface Post {
+  id: string;
   slug: string;
   title: string;
   content: string;
@@ -37,7 +36,7 @@ export const usePostStore = defineStore("postClient", () => {
   const getSinglePost = async (slug: string) => {
     try {
       state.isLoading = true;
-      const post = await $fetch(`/api/post/${slug}`, {
+      const post: Post = await $fetch(`/api/post/${slug}`, {
         method: "GET",
       });
       if (post) {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
-import { BadgeCheck, Calendar, ChevronDown, ChevronsUpDown, Home, Inbox, LogOut, Search, Settings, Sparkles } from "lucide-vue-next"
+import { BadgeCheck, Calendar, ChevronDown, ChevronsUpDown, Home, Inbox, LogOut, PenLine, Search, Settings, Sparkles } from "lucide-vue-next"
 
 import {
     Sidebar,
@@ -24,21 +24,15 @@ import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 
 const items = [
     {
-        title: "Home",
+        title: "Dashboard",
         url: "/dashboard",
         icon: Home,
     },
     {
-        title: "Posts",
-        url: "/dashboard/posts",
-        icon: Inbox,
+        title: "Account",
+        url: "/account",
+        icon: PenLine,
     },
-    {
-        title: "Analytic",
-        url: "/dashboard/analytic",
-        icon: Search,
-    },
-
 ]
 
 const user = useSupabaseUser()
@@ -86,7 +80,8 @@ const handleLogout = async () => {
                 </NuxtLink>
                 <NuxtLink to="/dashboard/create-post">
                     <Button class="w-full bg-yellow-500 text-slate-900 hover:bg-yellow-600" variant="default">New
-                        Post</Button>
+                        Post
+                    </Button>
                 </NuxtLink>
             </div>
         </SidebarHeader>

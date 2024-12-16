@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@nuxtjs/supabase",
     "nuxt-tiptap-editor",
     "@pinia/nuxt",
+    "pinia-plugin-persistedstate/nuxt",
     [
       "@vee-validate/nuxt",
       {
@@ -16,6 +17,11 @@ export default defineNuxtConfig({
       },
     ],
   ],
+
+  piniaPluginPersistedstate: {
+    storage: "cookies",
+    debug: true,
+  },
   runtimeConfig: {
     public: {
       appUrl: process.env.APP_URL,

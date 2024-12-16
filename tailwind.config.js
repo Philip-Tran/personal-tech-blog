@@ -32,6 +32,14 @@ module.exports = {
       fontFamily: {
         serif: ["Palatino", "serif"],
         garamond: ["Garamond", "serif"],
+        mono: [
+          '"JetBrains Mono"',
+          '"Fira Code"',
+          '"Cascadia Code"',
+          '"Source Code Pro"',
+          '"Ubuntu Mono"',
+          "monospace",
+        ],
       },
       colors: {
         border: "hsl(var(--border))",

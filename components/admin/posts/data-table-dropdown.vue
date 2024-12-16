@@ -18,7 +18,8 @@ function copy(id: string) {
     navigator.clipboard.writeText(id);
 }
 
-const goToBook = (id: string) => {
+const visitPost = (slug: string) => {
+    navigateTo(`/${slug}`)
 };
 
 const handleDeletePost = async (id: string) => {
@@ -37,11 +38,11 @@ const handleDeletePost = async (id: string) => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                <DropdownMenuItem @click="goToBook(post.slug)">Start reading</DropdownMenuItem>
+                <DropdownMenuItem @click="visitPost(post.slug)">Visit Post</DropdownMenuItem>
                 <DropdownMenuItem @click="copy(post.id)">
                     Copy Book Id
                 </DropdownMenuItem>
-                <DropdownMenuItem>View senflow for this book</DropdownMenuItem>
+
                 <DropdownMenuSeparator />
                 <DialogTrigger class="w-full">
                     <DropdownMenuItem>Delete</DropdownMenuItem>

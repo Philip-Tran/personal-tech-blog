@@ -26,15 +26,6 @@ export const columns: ColumnDef<Post>[] = [
     },
   },
   {
-    accessorKey: "updatedAt",
-    header: () => h("div", { class: "text-left" }, "Updated At"),
-    cell: ({ row }) => {
-      const id = row.getValue("updatedAt") as string;
-
-      return h("div", { class: "text-left font-medium" }, id);
-    },
-  },
-  {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
