@@ -27,7 +27,7 @@ onBeforeMount(async () => {
     </div>
 
     <!-- Main -->
-    <div v-else class="w-full min-h-screen py-16 lg:py-24 xl:py-28 px-4 md:px-10">
+    <div v-else class="w-full min-h-screen py-16 lg:py-20 2xl:py-20 px-4 md:px-10">
         <div class="lg:max-w-[700px] self-center mx-auto">
             <div class="mb-12 lg:mb-12 lg:p-3">
                 <h5 class="text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-medium text-slate-900 mb-4">Posts</h5>
@@ -40,11 +40,14 @@ onBeforeMount(async () => {
                         <div>
                             <NuxtLink class=" block inset-0 before:absolute before:inset-0 before:content-['']"
                                 before:z-0 :to="`/${post.slug}`">
-                                <h3 class="text-xl font-medium mb-2 hover:text-yellow-800">{{ post.title }}</h3>
+                                <h3 class="text-xl font-medium mb-2 xl:text-2xl hover:text-yellow-800">{{ post.title }}
+                                </h3>
                             </NuxtLink>
-                            <p class="font-serif text-lg text-orange-950" v-html="truncateText(post.content)"></p>
+                            <div class="font-serif text-lg xl:text-xl text-slate-950"
+                                v-html="truncateText(post.content)">
+                            </div>
                         </div>
-                        <div class="mt-2 lg:mt-4 flex">
+                        <div class="mt-2 lg:mt-4 xl:mt-5 flex">
                             <span class="font-medium text-yellow-800">{{ formatDate(post.createdAt) }}</span>
                             <Dot /> <span>{{ getReadingTime(post.content) }}</span>
                         </div>

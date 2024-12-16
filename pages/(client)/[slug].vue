@@ -46,12 +46,12 @@ onBeforeMount(async () => {
 
     <!-- Main -->
     <div v-else class="lg:max-w-[700px] my-8 lg:my-12 self-center lg:mx-auto p-6">
-        <h1 class="text-3xl font-bold mb-4">{{ post.title }}</h1>
-        <div class="text-sm text-gray-500 mb-6 lg:mb-10">
-            Published on: <span>{{ formatDate(post.createdAt) }}</span>
+        <h1 class="text-3xl lg:text-4xl font-bold mb-2 xl:mb-3">{{ post.title }}</h1>
+        <div class="text-sm text-yellow-800 lg:text-base font-medium mb-6 lg:mb-10 xl:mb-12 2xl:mb-14">
+            <span class="">{{ formatDate(post.createdAt) }}</span>
             <span class="ml-4"> {{ getReadingTime(post.content) }} </span>
         </div>
-        <div class="text-gray-600 mb-2 font-serif text-xl leading-9 prose" v-html="post.content"></div>
+        <div class="text-gray-600 mb-2 font-serif text-xl leading-8 prose" v-html="post.content"></div>
     </div>
 </template>
 

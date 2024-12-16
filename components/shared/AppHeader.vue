@@ -9,7 +9,10 @@ const supabase = useSupabaseClient()
     <header class="flex items-center justify-between">
       <div>
         <NuxtLink to="/">
-          <span class="text-2xl font-bold">Tran Quyet</span>
+          <div class="text-2xl font-bold">
+            <span class="">Tran</span>
+            <span class="text-yellow-700"> Quyet</span>
+          </div>
         </NuxtLink>
       </div>
       <div class="lg:w-2/3 flex items-center justify-end space-x-9">
