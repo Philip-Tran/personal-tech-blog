@@ -35,19 +35,22 @@ onBeforeMount(async () => {
             </div>
             <!-- post cards -->
             <div class="flex flex-col space-y-8 lg:space-y-16">
-                <div class="relative lg:hover:bg-gray-100 rounded-lg lg:p-3" v-for="(post, index) in postStore.posts"
-                    :key="index">
-                    <div>
-                        <NuxtLink class=" block inset-0 before:absolute before:inset-0 before:content-['']" before:z-0
-                            :to="`/${post.slug}`">
-                            <h3 class="text-xl font-medium mb-2 hover:text-yellow-800">{{ post.title }}</h3>
-                        </NuxtLink>
-                        <p class="font-serif text-lg text-orange-950" v-html="truncateText(post.content)"></p>
+                <div v-for="(post) in postStore.posts" :key="post.id">
+                    <div class="relative lg:hover:bg-gray-100 rounded-lg lg:p-3">
+                        <div>
+                            <NuxtLink class=" block inset-0 before:absolute before:inset-0 before:content-['']"
+                                before:z-0 :to="`/${post.slug}`">
+                                <h3 class="text-xl font-medium mb-2 hover:text-yellow-800">{{ post.title }}</h3>
+                            </NuxtLink>
+                            <p class="font-serif text-lg text-orange-950" v-html="truncateText(post.content)"></p>
+                        </div>
+                        <div class="mt-2 lg:mt-4 flex">
+                            <span class="font-medium text-yellow-800">{{ formatDate(post.createdAt) }}</span>
+                            <Dot /> <span>{{ getReadingTime(post.content) }}</span>
+                        </div>
+
                     </div>
-                    <div class="mt-2 lg:mt-4 flex">
-                        <span class="font-medium text-yellow-800">{{ formatDate(post.createdAt) }}</span>
-                        <Dot /> <span>{{ getReadingTime(post.content) }}</span>
-                    </div>
+                    <Separator class="mt-3 lg:mx-3 -ml-3" />
                 </div>
             </div>
             <div class="flex justify-center mt-20 lg:mt-32">

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { RouterLink } from "vue-router";
 import { BadgeCheck, Calendar, ChevronDown, ChevronsUpDown, Home, Inbox, LogOut, PenLine, Search, Settings, Sparkles } from "lucide-vue-next"
 
 import {
@@ -92,10 +91,10 @@ const handleLogout = async () => {
                     <SidebarMenu>
                         <SidebarMenuItem v-for="item in items" :key="item.title" class="">
                             <SidebarMenuButton asChild class="min-h-10">
-                                <RouterLink :to="item.url">
+                                <<NuxtLink :to="item.url">
                                     <component :is="item.icon" />
                                     <span>{{ item.title }}</span>
-                                </RouterLink>
+                                    </NuxtLink>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                     </SidebarMenu>

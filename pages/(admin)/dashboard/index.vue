@@ -40,7 +40,7 @@ onBeforeMount(async () => {
       <NoPostNotice v-else />
       <div>
         <dataTable :columns="columns" :data="postStore.posts || []" v-if="postStore.posts" />
-        <div v-if="statsStore.totalPost !== 0">
+        <div v-else>
           <Skeleton class="w-full h-96 rounded-md" />
         </div>
       </div>
