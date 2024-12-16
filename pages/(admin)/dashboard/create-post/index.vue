@@ -11,6 +11,15 @@ import { toast } from 'vue-sonner'
 import { toTypedSchema } from "@vee-validate/zod";
 import { useForm } from "vee-validate"
 import { useRouter } from "vue-router";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
 
 const { values, defineField, handleSubmit, errors } = useForm({
   validationSchema: toTypedSchema(addPostSchema)
@@ -21,9 +30,19 @@ const postStore = usePostStore()
 
 const [title] = defineField("title")
 const [content] = defineField("content")
+const [published] = defineField("published")
+
+// Ensure that the `published` value is a boolean (default to `true` if not set)
+const publishedBoolean = computed({
+  get() {
+    return published.value === true;
+  },
+  set(value: boolean) {
+    published.value = value;  // Keep it as a boolean
+  }
+});
 
 const handleFormSubmit = handleSubmit(async (values) => {
-  console.log(values)
   const res = await postStore.addPost(values as Post)
 
   if (res) {
@@ -36,7 +55,7 @@ const handleFormSubmit = handleSubmit(async (values) => {
       description: `Error occurs`
     })
   }
-}) 
+})
 </script>
 
 <template>
@@ -62,18 +81,36 @@ const handleFormSubmit = handleSubmit(async (values) => {
             </DialogDescription>
           </DialogHeader>
           <div class="flex items-center space-x-2">
-            <div class="grid flex-1 gap-2">
-              <Label for="link" class="sr-only">
-                Option
-              </Label>
+            <div class="w-2/3">
+              <Select class="w-full" v-model="publishedBoolean">
+                <SelectTrigger class="w-full">
+                  <SelectValue placeholder="Choose publish option" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Status</SelectLabel>
+                    <SelectItem :value="true">
+                      Publish
+                    </SelectItem>
+                    <SelectItem :value="false">
+                      Draft
+                    </SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             </div>
-            <Button @click="handleFormSubmit" type="submit" size="sm" class="px-3">
-              <span class="">Post Now</span>
-            </Button>
+            <div class="w-1/3">
+              <Button v-if="published" @click="handleFormSubmit" type="submit" size="sm" class="w-full px-3">
+                <span class="">Post Now</span>
+              </Button>
+              <Button v-else @click="handleFormSubmit" type="submit" size="sm" class="w-full px-3">
+                <span class="">Save</span>
+              </Button>
+            </div>
           </div>
           <DialogFooter class="sm:justify-start">
             <DialogClose as-child>
-              <Button type="button" variant="secondary">
+              <Button type="button" class="mt-4" variant="secondary">
                 Cancel
               </Button>
             </DialogClose>
@@ -84,15 +121,12 @@ const handleFormSubmit = handleSubmit(async (values) => {
     <div class="flex flex-col justify-center">
       <div class="max-w-[700px] w-[700px] mx-auto pb-24 lg:pb-32 xl:pb-[600px] 2xl:pb-[700px]">
         <div class="mb-8 lg:mb-16">
-          <Input class="border-none rounded-none text-base font-medium p-0 ring-0 focus:ring-0 focus-visible:ring-0"
-            placeholder="Post title" v-model="title" />
+          <div>{{ values }}</div>
+          <Input class="border-none rounded-none text-xl font-medium p-0 ring-0 focus:ring-0 focus-visible:ring-0"
+            placeholder="Post title goes here" v-model="title" />
         </div>
         <AdminTiptapEditor v-model="content" />
       </div>
     </div>
   </div>
 </template>
-
-
-
-<style></style>

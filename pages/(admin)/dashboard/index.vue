@@ -11,7 +11,9 @@ const user = useSupabaseUser()
     <div class="flex flex-col ">
       <div>
         <span class="text-2xl lg:text-3xl font-medium">Posts</span>
-        <p>{{ user }}</p>
+      </div>
+      <div>
+
       </div>
     </div>
   </div>

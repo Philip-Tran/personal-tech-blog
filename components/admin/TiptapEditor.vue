@@ -42,12 +42,12 @@ const editor = useEditor({
   onUpdate: ({ editor }) => {
     emit('update:modelValue', editor.getHTML())
   },
-  extensions: [TiptapStarterKit, TiptapPlaceholder.configure({ placeholder: 'write some thing...' }), TiptapCodeBlock, CodeBlockLowlight
+  extensions: [TiptapStarterKit, TiptapPlaceholder.configure({ placeholder: 'Start writing here...' }), TiptapCodeBlock, CodeBlockLowlight
     .configure({ lowlight }),],
   editorProps: {
     attributes: {
       spellcheck: "true",
-      class: "prose w-full w-[700px]  text-lg font-serif leading-relaxed text-grey-700 prose-sm  min-h-60 overflow-y-auto focus:outline-none"
+      class: "prose w-full w-[700px]  text-xl font-serif leading-relaxed text-grey-700 prose-sm  min-h-60 overflow-y-auto focus:outline-none"
     },
     transformPastedText(text) {
       return text.toUpperCase()

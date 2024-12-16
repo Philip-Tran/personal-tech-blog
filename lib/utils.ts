@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// custom
+// Custom
 // generate slug for single post
 export function slugify(text: string): string {
   return text

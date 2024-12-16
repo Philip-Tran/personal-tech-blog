@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { MenuIcon } from 'lucide-vue-next';
 const user = useSupabaseUser()
+const supabase = useSupabaseClient()
 </script>
 
 <template>
@@ -8,7 +9,7 @@ const user = useSupabaseUser()
     <header class="flex items-center justify-between">
       <div>
         <NuxtLink to="/">
-          <span class="text-2xl font-bold">Logo</span>
+          <span class="text-2xl font-bold">Tran Quyet</span>
         </NuxtLink>
       </div>
       <div class="lg:w-2/3 flex items-center justify-end space-x-9">
@@ -22,7 +23,32 @@ const user = useSupabaseUser()
             </NuxtLink>
           </div>
         </nav>
-        <MenuIcon />
+        <Dialog>
+          <DialogTrigger as-child>
+            <div class="p-1 cursor-pointer hover:bg-gray-100 rounded-sm">
+              <MenuIcon :size=28 />
+            </div>
+          </DialogTrigger>
+          <DialogContent class="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>MENU</DialogTitle>
+            </DialogHeader>
+            <div class="grid gap-4 py-4">
+              <div class="grid items-center gap-4">
+                <NuxtLink to="/">
+                  <Button class="w-full" variant="secondary">Home</Button>
+                </NuxtLink>
+              </div>
+            </div>
+            <DialogFooter>
+              <NuxtLink to="/login" v-if="!user">
+                <Button type="submit">
+                  Login
+                </Button>
+              </NuxtLink>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </header>
   </div>
