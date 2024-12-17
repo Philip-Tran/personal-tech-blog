@@ -30,7 +30,7 @@ module.exports = {
         },
       }),
       fontFamily: {
-        serif: ["Palatino", "serif"],
+        // serif: ["Palatino", "serif"],
         garamond: ["Garamond", "serif"],
         mono: [
           '"JetBrains Mono"',

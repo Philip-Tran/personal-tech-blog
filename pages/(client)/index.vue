@@ -34,7 +34,7 @@ onBeforeMount(async () => {
                 <span>{{ formatDate(Date.now()) }}</span>
             </div>
             <!-- post cards -->
-            <div class="flex flex-col space-y-8 lg:space-y-16">
+            <div class="flex flex-col space-y-8 lg:space-y-9 xl:space-y-10">
                 <div v-for="(post) in postStore.posts" :key="post.id">
                     <div class="relative lg:hover:bg-gray-100 rounded-lg lg:p-3">
                         <div>
@@ -43,18 +43,18 @@ onBeforeMount(async () => {
                                 <h3 class="text-xl font-medium mb-2 xl:text-2xl hover:text-yellow-800">{{ post.title }}
                                 </h3>
                             </NuxtLink>
-                            <div class="font-serif text-lg xl:text-xl text-slate-950"
+                            <div class="font-serif text-lg xl:text-lg text-[#5e5e5e]"
                                 v-html="truncateText(post.content)">
                             </div>
                         </div>
                         <div class="mt-2 lg:mt-4 xl:mt-5 flex">
                             <span class="font-medium text-yellow-800">{{ formatDate(post.createdAt) }}</span>
-                            <Dot /> <span>{{ getReadingTime(post.content) }}</span>
+                            <Dot /> <span class="uppercase">{{ getReadingTime(post.content) }}</span>
                         </div>
 
                     </div>
                     <div class="lg:px-3">
-                        <Separator class="mt-3" />
+                        <Separator class="mt-3 lg:mt-5" />
                     </div>
                 </div>
             </div>

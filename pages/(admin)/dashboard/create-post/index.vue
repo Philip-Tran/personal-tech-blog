@@ -11,6 +11,7 @@ import { toast } from 'vue-sonner'
 import { toTypedSchema } from "@vee-validate/zod";
 import { useForm } from "vee-validate"
 import { useRouter } from "vue-router";
+import { Textarea } from "~/components/ui/textarea";
 
 const { values, defineField, handleSubmit, errors } = useForm({
   validationSchema: toTypedSchema(addPostSchema)
@@ -128,9 +129,9 @@ const handleFormSubmit = handleSubmit(async (values) => {
     <div class="flex flex-col justify-center p-4 ">
       <div
         class="w-full md:max-w-[640px] lg:max-w-[700px] xl:w-[700px] mx-auto pb-24 lg:pb-32 xl:pb-[600px] 2xl:pb-[700px]">
-        <div class="mb-8 lg:mb-16 ">
-          <Input
-            class="w-full border-none text-wrap rounded-none text-xl font-medium p-0 ring-0 focus:ring-0 focus-visible:ring-0"
+        <div class="mb-6 lg:mb-10 ">
+          <Textarea
+            class="w-full resize-none border-none text-wrap rounded-none text-xl font-medium p-0 ring-0 focus:ring-0 focus-visible:ring-0"
             placeholder="Post title goes here" v-model="title" />
         </div>
         <AdminTiptapEditor v-model="content" />

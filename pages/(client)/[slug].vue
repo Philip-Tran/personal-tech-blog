@@ -51,7 +51,7 @@ onBeforeMount(async () => {
             <span class="">{{ formatDate(post.createdAt) }}</span>
             <span class="ml-4"> {{ getReadingTime(post.content) }} </span>
         </div>
-        <div class="text-gray-600 mb-2 font-serif text-xl leading-8 prose prose-h1:font-sans prose-h2:font-sans  prose-h3:font-sans  prose-h4:font-sans  prose-h5:font-sans"
+        <div class="text-[#363737] mb-2 font-serif text-[18px] lg:text-[19px] leading-9 prose prose-h1:font-sans prose-h2:font-sans  prose-h3:font-sans  prose-h4:font-sans  prose-h5:font-sans"
             v-html="post.content"></div>
     </div>
 </template>
