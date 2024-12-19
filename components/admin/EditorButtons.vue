@@ -1,17 +1,23 @@
 <script lang="ts" setup>
 defineProps<{
-    editor: any
+    editor: TiptapEditor,
+    setLink: () => void
 }>()
 
+import type { TiptapEditor } from '#build/imports';
 import { LucideBold, LucideItalic, LucideStrikethrough, LucideCode, LucideX, LucideTrash, LucideAlignJustify, LucideHeading1, LucideHeading2, LucideHeading3, LucideList, LucideListOrdered, LucideTerminal, LucideQuote, LucideArrowLeft, LucideArrowRight } from 'lucide-vue-next';
+
 </script>
 
 <template>
-    <div class="editor-buttons sticky top-0 bg-white shadow-md z-10">
+    <div class="editor-buttons w-full sticky top-0 bg-white shadow-md z-10">
         <button @click="editor.chain().focus().toggleBold().run()"
             :disabled="!editor.can().chain().focus().toggleBold().run()"
             :class="{ 'is-active': editor.isActive('bold') }">
             <LucideBold />
+        </button>
+        <button @click="editor.setLink().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('link') }">
+            Set Link
         </button>
         <button @click="editor.chain().focus().toggleItalic().run()"
             :disabled="!editor.can().chain().focus().toggleItalic().run()"

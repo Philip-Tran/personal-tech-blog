@@ -26,13 +26,19 @@ const visitPost = (slug: string) => {
 
 const router = useRouter()
 const handleDeletePost = async (id: string) => {
-    console.log("delete book", id)
+    console.log("delete post", id)
     const result = await postStoreAdmin.deletePost(id)
     if (result?.success) {
         console.log("goooooooooo")
         router.go(0)
     }
 };
+
+const goToEditPage = (postId: string) => {
+    if (postId) {
+        navigateTo(`/dashboard/edit-post/${postId}`)
+    }
+}
 </script>
 
 <template>
@@ -47,8 +53,8 @@ const handleDeletePost = async (id: string) => {
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                 <DropdownMenuItem @click="visitPost(post.slug)">Visit Post</DropdownMenuItem>
-                <DropdownMenuItem @click="copy(post.id)">
-                    Copy Book Id
+                <DropdownMenuItem @click="goToEditPage(post.id)">
+                    Edit Post
                 </DropdownMenuItem>
 
                 <DropdownMenuSeparator />

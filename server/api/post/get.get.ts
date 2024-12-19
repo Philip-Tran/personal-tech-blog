@@ -7,6 +7,9 @@ export default defineEventHandler(async (event) => {
         createdAt: "desc",
       },
       take: 10,
+      where: {
+        published: true,
+      },
       select: {
         id: true,
         slug: true,

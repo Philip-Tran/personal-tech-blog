@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col w-full">
-    <div v-if="editor" class="hidden">
-      <AdminEditorButtons :editor="editor" />
+    <div v-if="editor" class="">
+      <AdminEditorButtons :editor="editor" :setLink="setLink" />
     </div>
     <div class="w-full mx-auto">
       <TiptapEditorContent :editor="editor" class="w-700px" />
@@ -13,8 +13,6 @@
 const props = defineProps<{
   modelValue: string | undefined;
 }>();
-
-import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 
 import css from 'highlight.js/lib/languages/css'
 import js from 'highlight.js/lib/languages/javascript'
@@ -37,11 +35,20 @@ const editor = useEditor({
   onUpdate: ({ editor }) => {
     emit('update:modelValue', editor.getHTML())
   },
-  extensions: [TiptapStarterKit, TiptapPlaceholder.configure({ placeholder: 'Start writing here...' }), TiptapYoutube.configure({
-    controls: false,
-    nocookie: true,
-  }), TiptapCodeBlock, CodeBlockLowlight
-    .configure({ lowlight }),],
+  extensions: [TiptapStarterKit,
+    TiptapPlaceholder.configure({
+      placeholder: 'Start writing here...'
+    }),
+    TiptapYoutube.configure({
+      controls: false,
+      nocookie: true,
+    }), TiptapCodeBlock,
+    TiptapLink.configure({
+      openOnClick: true,
+      defaultProtocol: 'https',
+    }),
+    TiptapCodeBlockLowlight
+      .configure({ lowlight }),],
 
   editorProps: {
     attributes: {
@@ -53,6 +60,36 @@ const editor = useEditor({
     }
   },
 });
+
+// Method to set a link
+function setLink() {
+  if (!editor.value) return // Ensure the editor is available
+  const previousUrl = editor.value.getAttributes('link').href
+  const url = window.prompt('URL', previousUrl)
+
+  // Cancelled
+  if (url === null) return
+
+  // Empty
+  if (url === '') {
+    editor.value
+      .chain()
+      .focus()
+      .extendMarkRange('link')
+      .unsetLink()
+      .run()
+    return
+  }
+
+  // Update link
+  editor.value
+    .chain()
+    .focus()
+    .extendMarkRange('link')
+    .setLink({ href: url })
+    .run()
+}
+
 
 watch(
   () => props.modelValue,

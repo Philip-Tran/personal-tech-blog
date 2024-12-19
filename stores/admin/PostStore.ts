@@ -39,6 +39,20 @@ const usePostStore = defineStore(
       }
     };
 
+    const editPost = async (values: Post, postId: string) => {
+      try {
+        const data = await $fetch(`/api/admin/${postId}`, {
+          method: "PUT",
+          body: values,
+        });
+
+        return data;
+      } catch (error) {
+        console.error("Error adding post:", (error as Error).message);
+        return null;
+      }
+    };
+
     const deletePost = async (postId: string) => {
       try {
         const data = await $fetch("/api/admin/delete-post", {
@@ -58,7 +72,7 @@ const usePostStore = defineStore(
       }
     };
 
-    return { state, addPost, deletePost };
+    return { state, addPost, deletePost, editPost };
   },
   {
     persist: true,
