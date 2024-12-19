@@ -1,6 +1,7 @@
 <template>
-  <div class="flex flex-col w-full">
-    <div v-if="editor" class="">
+  <div class="w-full">
+    <div v-if="editor && settingStore.state.isEditorButtonsOpen"
+      class="hidden lg:flex lg:fixed  flex-col w-max min-h-[40px]  top-2 lg:left-12 lg:mx-0 xl:left-[240px] 2xl:left-[460px] bg-white z-50 shadow-white border rounded-md py-1 px-4 lg:px-8">
       <AdminEditorButtons :editor="editor" :setLink="setLink" />
     </div>
     <div class="w-full mx-auto">
@@ -13,6 +14,9 @@
 const props = defineProps<{
   modelValue: string | undefined;
 }>();
+
+import { useSettingStore } from '~/stores/admin/SettingStore';
+const settingStore = useSettingStore()
 
 import css from 'highlight.js/lib/languages/css'
 import js from 'highlight.js/lib/languages/javascript'
@@ -105,6 +109,21 @@ watch(
   }
 );
 
+import { onMounted, onBeforeUnmount } from 'vue'
+
+const handleKeyPress = (event: KeyboardEvent) => {
+  if ((event.ctrlKey || event.metaKey) && event.key === 'p') {
+    event.preventDefault()
+    settingStore.toggleEditorButton()
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeyPress)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', handleKeyPress)
+})
 onBeforeUnmount(() => {
   unref(editor)?.destroy();
 });

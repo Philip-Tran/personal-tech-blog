@@ -12,7 +12,6 @@ import { toTypedSchema } from "@vee-validate/zod";
 import { useForm } from "vee-validate"
 import { useRouter } from "vue-router";
 import { Textarea } from "~/components/ui/textarea";
-import { string } from "zod";
 
 const { values, defineField, handleSubmit, errors } = useForm({
     validationSchema: toTypedSchema(addPostSchema)
@@ -40,32 +39,32 @@ watch(
         postStore.state.post.published = newValues.published
     }
 )
+const POST_STATUS = {
+    PUBLISHED: true,
+    DRAFT: false
+} as const
 
-const publishedBoolean = computed({
+interface StatusOption {
+    label: string
+    value: boolean
+}
+
+const statusOptions = computed<StatusOption[]>(() => [
+    { label: 'Publish', value: POST_STATUS.PUBLISHED },
+    { label: 'Draft', value: POST_STATUS.DRAFT }
+])
+
+const postStatus = computed({
     get() {
-        return published.value === true;
+        return published.value ?? POST_STATUS.DRAFT
     },
     set(value: boolean) {
-        published.value = value;
+        published.value = value
     }
-});
+})
 
 const route = useRoute();
 const postId = route.params.postId as string
-const handleFormSubmit = handleSubmit(async (values) => {
-    const res = await postStore.editPost(values as Post, postId)
-
-    if (res) {
-        toast.success("Edit post successfully", {
-            description: "Redirecting"
-        })
-        router.push('/dashboard')
-    } else {
-        toast.error("Error", {
-            description: `Error occurs`
-        })
-    }
-})
 
 const { data: post, error } = await useFetch<{ data: Post }>(`/api/admin/${postId}`, {
     method: "GET",
@@ -78,10 +77,26 @@ onBeforeMount(() => {
         published.value = post.value.data.published
     }
 })
+
+const handleFormSubmit = handleSubmit(async (values) => {
+    const res = await postStore.editPost(values as Post, postId)
+
+    if (res) {
+        toast.success("Edit post successfully", {
+            description: "Redirecting to dashboard"
+        })
+        router.push('/dashboard')
+    } else {
+        toast.error("Error", {
+            description: `Error occurs`
+        })
+    }
+})
+
 </script>
 
 <template>
-    <div class="w-full min-h-screen">
+    <div class="w-full min-h-screen relative">
         <div class="w-full flex items-center justify-between min-h-10 py-2 px-4 lg:py-4 lg:px-8">
             <div class="">
                 <NuxtLink to="/dashboard">
@@ -104,18 +119,18 @@ onBeforeMount(() => {
                     </DialogHeader>
                     <div class="flex items-center space-x-2">
                         <div class="w-2/3">
-                            <Select class="w-full" v-model="publishedBoolean">
+                            <Select class="w-full" v-model="postStatus">
                                 <SelectTrigger class="w-full">
-                                    <SelectValue placeholder="Choose publish option" />
+                                    <SelectValue placeholder="Choose publish option">
+                                        {{ postStatus ? 'Published' : 'Draft' }}
+                                    </SelectValue>
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
                                         <SelectLabel>Status</SelectLabel>
-                                        <SelectItem :value="true">
-                                            Publish
-                                        </SelectItem>
-                                        <SelectItem :value="false">
-                                            Draft
+                                        <SelectItem v-for="option in statusOptions" :key="String(option.value)"
+                                            :value="option.value">
+                                            {{ option.label }}
                                         </SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
