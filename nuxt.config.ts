@@ -21,10 +21,6 @@ export default defineNuxtConfig({
     ],
   ],
   plugins: ["~/plugins/prism.js"],
-  purgeCSS: {
-    whitelistPatternsChildren: [/token$/],
-  },
-
   piniaPluginPersistedstate: {
     storage: "cookies",
     debug: true,
@@ -36,7 +32,9 @@ export default defineNuxtConfig({
       supabaseAnonKey: process.env.SUPABASE_KEY,
     },
   },
-
+  // build: {
+  //   transpile: ["prismjs"],
+  // },
   supabase: {
     redirect: false,
     // redirectOptions: {

@@ -3,53 +3,53 @@ definePageMeta({
     layout: "(client)-app-default-layout",
 });
 
-import Prism from "~/plugins/prism";
 import { getReadingTime, formatDate } from "~/lib/utils";
 import { type Post } from "~/stores/client/PostStore";
 import { usePostStore } from "~/stores/client/PostStore";
 
 import { useRoute } from "vue-router";
-import { ref, onBeforeMount, onMounted } from "vue";
 
 const postStore = usePostStore();
 const route = useRoute();
-
 const post = ref<Post>();
+const { $highlight } = useNuxtApp();
 
-watch(post, (newPost) => {
-    if (newPost) {
-        Prism.highlightAll();
-    }
-});
-
-onBeforeMount(async () => {
+const fetchPost = async (slug: string) => {
     try {
-        const fetchedPost = await postStore.getSinglePost(route.params.slug.toString());
+        const fetchedPost = await postStore.getSinglePost(slug);
         if (fetchedPost as Post) {
-            //@ts-ignore
-            post.value = fetchedPost;
+            post.value = fetchedPost as Post;
+            // syntax highlight
+            await nextTick(() => {
+                $highlight();
+            });
         } else {
             console.error("Post not found.");
         }
     } catch (error) {
         console.error("Error fetching post:", error);
     }
+};
+
+onBeforeMount(async () => {
+    await fetchPost(route.params.slug.toString());
 });
 
 watch(() => route.fullPath, async () => {
-    try {
-        const fetchedPost = await postStore.getSinglePost(route.params.slug.toString());
-        if (fetchedPost) {
-            //@ts-ignore
-            post.value = fetchedPost;
-        } else {
-            console.error("Post not found.");
-        }
-    } catch (error) {
-        console.error("Error fetching post:", error);
-    }
-});
+    await fetchPost(route.params.slug.toString());
+}, { deep: true });
 
+watch(post, async () => {
+    await nextTick(() => {
+        $highlight();
+    });
+}, { deep: true });
+
+onMounted(async () => {
+    await nextTick(() => {
+        $highlight();
+    });
+});
 </script>
 
 <template>
@@ -72,7 +72,7 @@ watch(() => route.fullPath, async () => {
             <span class="">{{ formatDate(post.createdAt) }}</span>
             <span class="ml-4"> {{ getReadingTime(post.content) }} </span>
         </div>
-        <div class="text-[#363737] mb-2 font-serif text-[18px] lg:text-[19px] leading-9 prose prose-h1:font-sans prose-h2:font-sans  prose-h3:font-sans  prose-h4:font-sans  prose-h5:font-sans"
+        <div class="text-[#363737] mb-2 font-serif text-[18px] lg:text-[19px] leading-9 prose prose-h1:font-sans prose-h2:font-sans prose-h3:font-sans prose-h4:font-sans prose-h5:font-sans"
             v-html="post.content"></div>
     </div>
 </template>
