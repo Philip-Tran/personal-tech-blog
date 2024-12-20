@@ -4,14 +4,13 @@ definePageMeta({
   middleware: ["admin"]
 })
 
-import { usePostStore } from '~/stores/client/PostStore';
+import { usePostStore } from '~/stores/admin/PostStore';
 import { useStatsStore } from '~/stores/admin/StatStore';
 
 import type { Post } from '@prisma/client';
 import dataTable from "~/components/admin/posts/data-table.vue";
 import { columns } from "~/components/admin/posts/columns"
 import StatCards from './(components)/StatCards.vue';
-import { File } from 'lucide-vue-next';
 import NoPostNotice from './(components)/NoPostNotice.vue';
 
 const user = useSupabaseUser()
@@ -19,11 +18,15 @@ const statsStore = useStatsStore()
 const postStore = usePostStore()
 
 onBeforeMount(async () => {
-  await postStore.getPosts()
+  await postStore.getPosts(8)
 })
 
 onBeforeMount(async () => {
   await statsStore.fetchStats()
+})
+
+onMounted(() => {
+  console.log(postStore.posts)
 })
 </script>
 
@@ -39,7 +42,7 @@ onBeforeMount(async () => {
       <StatCards v-if="statsStore.totalPost !== 0" />
       <NoPostNotice v-else />
       <div>
-        <dataTable :columns="columns" :data="postStore.posts || []" v-if="postStore.posts" />
+        <dataTable v-if="postStore.posts" :columns="columns" :data="postStore.posts || []" />
         <div v-else>
           <Skeleton class="w-full h-96 rounded-md" />
         </div>

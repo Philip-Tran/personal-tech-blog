@@ -1,8 +1,12 @@
 import { defineStore } from "pinia";
+import { ref } from "vue";
 
 export interface Post {
+  id: string;
+  slug: string;
   title: string;
   content: string;
+  createdAt: Date;
   published: boolean;
 }
 
@@ -15,11 +19,15 @@ interface PostState {
 const usePostStore = defineStore(
   "post",
   () => {
+    const posts = ref<Post[]>();
     const state: Ref<PostState> = ref({
       post: {
         title: "",
         content: "",
         published: true,
+        createdAt: new Date(),
+        id: "",
+        slug: "",
       },
       message: "",
       isLoading: false,
@@ -72,7 +80,22 @@ const usePostStore = defineStore(
       }
     };
 
-    return { state, addPost, deletePost, editPost };
+    const getPosts = async (postsNumber: number) => {
+      try {
+        const data = await $fetch<Post[]>(`/api/admin/posts/${postsNumber}`, {
+          method: "GET",
+        });
+        console.log("-----------------hehre------------");
+        if (data) console.log("has data");
+        console.log(data);
+        posts.value = data;
+        return data;
+      } catch (error) {
+        console.error((error as Error).message);
+      }
+    };
+
+    return { state, addPost, deletePost, editPost, getPosts, posts };
   },
   {
     persist: true,
