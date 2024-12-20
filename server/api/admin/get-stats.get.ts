@@ -8,9 +8,9 @@ export default defineEventHandler(async (event) => {
       },
     });
 
-    const totalPost = await prisma.post.count();
+    const totalPosts = await prisma.post.count();
 
-    return { totalPublishedPost: totalPublishedPost, totalPost: totalPost };
+    return { totalPublishedPost: totalPublishedPost, totalPosts: totalPosts };
   } catch (error) {
     console.error("Error getting stat: ", (error as Error).message);
   }

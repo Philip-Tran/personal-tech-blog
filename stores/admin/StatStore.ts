@@ -6,7 +6,7 @@ export const useStatsStore = defineStore("stats", () => {
     const data = await $fetch("/api/admin/get-stats", {
       method: "GET",
     });
-    totalPost.value = data?.totalPost || 0;
+    totalPost.value = data?.totalPosts || 0;
     totalPublishedPost.value = data?.totalPublishedPost || 0;
   }
 
