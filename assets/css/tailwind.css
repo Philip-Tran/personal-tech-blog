@@ -2,6 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 12px; /* Vertical scrollbar width */
+  height: 8px; /* Horizontal scrollbar height */
+}
+::-webkit-scrollbar-thumb {
+  background-color: #0f295076;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #614e0876;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-horizontal {
+  height: 8px;
+}
+
+/* code block */
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #1e293b !important;
+  @apply rounded-xl;
+}
+.copy-to-clipboard-button {
+  @apply uppercase py-1 px-3 rounded-md bg-gray-700 hover:bg-gray-600 text-xs tracking-wide text-gray-50 !important;
+  font-size: 0.65rem !important;
+  letter-spacing: 0.1em !important;
+}
+
 /* sidebar */
 @layer base {
   :root {

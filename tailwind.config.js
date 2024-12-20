@@ -1,12 +1,17 @@
 const animate = require("tailwindcss-animate");
 const typography = require("@tailwindcss/typography");
+const scrollbar = require("tailwind-scrollbar");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
   safelist: ["dark"],
   prefix: "",
-
+  safelist: [
+    {
+      pattern: /token.*/,
+    },
+  ],
   theme: {
     container: {
       center: true,
@@ -108,5 +113,5 @@ module.exports = {
       },
     },
   },
-  plugins: [animate, typography],
+  plugins: [animate, typography, scrollbar],
 };
