@@ -58,9 +58,9 @@ onBeforeMount(async () => {
                     </div>
                 </div>
             </div>
-            <div class="flex justify-center mt-20 lg:mt-32">
+            <!-- <div class="flex justify-center mt-20 lg:mt-32">
                 <Button>View All</Button>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>

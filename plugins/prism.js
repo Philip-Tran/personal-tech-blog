@@ -1,8 +1,8 @@
 import Prism from "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
-// import "prismjs/components/prism-javascript.min.js";
-// import "prismjs/components/prism-json.min.js";
-// import "prismjs/components/prism-css.min.js";
+import "prismjs/components/prism-javascript.min.js";
+import "prismjs/components/prism-json.min.js";
+import "prismjs/components/prism-css.min.js";
 
 // toolbar plugin
 import "prismjs/plugins/toolbar/prism-toolbar.css";

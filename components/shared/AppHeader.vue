@@ -10,8 +10,8 @@ const supabase = useSupabaseClient()
       <div>
         <NuxtLink to="/">
           <div class="text-lg lg:text-2xl font-bold">
-            <span class="">Tran</span>
-            <span class="text-yellow-700"> Quyet</span>
+            <span class="">Phil</span>
+            <span class="text-yellow-700"> Tran</span>
           </div>
         </NuxtLink>
       </div>
@@ -38,7 +38,7 @@ const supabase = useSupabaseClient()
             </DialogHeader>
             <div class="grid gap-4 py-4">
               <div class="grid items-center gap-4">
-                <NuxtLink to="/">
+                <NuxtLink to="https://phil-tran-dev.vercel.app/" target="_blank">
                   <Button class="w-full" variant="secondary">Home</Button>
                 </NuxtLink>
               </div>
