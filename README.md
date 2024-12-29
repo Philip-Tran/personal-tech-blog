@@ -1,75 +1,23 @@
-# Nuxt Minimal Starter
+### Fullstack simple Blog app with CMS build With VueJS and Nuxt
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Mình có dự định để viết online và chia sẻ những gì trong tâm tư mình qua việc viết lách từ lâu, và mình cần một blog đơn giản, với giao điện để viết mà không bị phân tán. Ngoài kia không có ứng dụng nào theo nhu cầu của mình nên mình tạo webapp này cho riêng mình
 
-## Setup
+---
 
-Make sure to install dependencies:
+## Tính năng
 
-```bash
-# npm
-npm install
+- Authentication và Authorization qua GitHub Oauth
+- Dashboard hiển thị chỉ số và quản lý bài viết
+  ![Dashboard Screen](https://phil-tran-dev.vercel.app/_vercel/image?url=%2Fimages%2Fproject%2Fproject-blogcms-01.png&w=1536&q=100)
+- Hỗ trợ code block highlighting cho tech blog
+- Đầy đủ tính năng rich text editor
+- Cài trạng thái bài đăng công khai hoặc lưu bản nháp
 
-# pnpm
-pnpm install
+## Công nghệ sử dụng
 
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- VueJs
+- Nuxt
+- Tailwind CSS
+- JavaScript & TypeScript
+- Pinia
+- Supabase
