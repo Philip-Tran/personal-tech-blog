@@ -1,11 +1,11 @@
-import { lazy } from "zod";
-
 export interface Post {
   id: string;
   slug: string;
   title: string;
+  metaDescription?: string;
   content: string;
   createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface PostsState {

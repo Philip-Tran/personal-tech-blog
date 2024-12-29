@@ -40,7 +40,8 @@ onBeforeMount(async () => {
                         <div>
                             <NuxtLink class=" block inset-0 before:absolute before:inset-0 before:content-['']"
                                 before:z-0 :to="`/${post.slug}`">
-                                <h3 class="text-xl font-medium mb-2 xl:text-2xl hover:text-yellow-800">{{ post.title }}
+                                <h3 class="text-xl font-medium mb-2 xl:text-2xl hover:text-yellow-800">{{ post.title
+                                    }}
                                 </h3>
                             </NuxtLink>
                             <div class="font-serif text-lg xl:text-lg text-[#5e5e5e]"
@@ -59,8 +60,8 @@ onBeforeMount(async () => {
                 </div>
             </div>
             <!-- <div class="flex justify-center mt-20 lg:mt-32">
-                <Button>View All</Button>
-            </div> -->
+                    <Button>View All</Button>
+                </div> -->
         </div>
     </div>
 </template>

@@ -3,6 +3,8 @@ definePageMeta({
     layout: "(client)-app-default-layout",
 });
 
+
+
 import { getReadingTime, formatDate } from "~/lib/utils";
 import { type Post } from "~/stores/client/PostStore";
 import { usePostStore } from "~/stores/client/PostStore";
@@ -50,6 +52,19 @@ onMounted(async () => {
         $highlight();
     });
 });
+
+watch(post, () => {
+    if (post.value) {
+        useSeoMeta({
+            title: () => post.value?.title || 'Phil Tran',
+            ogTitle: () => post.value?.title || 'Phil Post',
+            // @ts-ignore
+            articlePublishedTime: () => post.value?.createdAt,
+            // @ts-ignore
+            articleModifiedTime: () => post.value?.updatedAt,
+        })
+    }
+}, { immediate: true })
 </script>
 
 <template>
@@ -66,7 +81,7 @@ onMounted(async () => {
     </div>
 
     <!-- Main -->
-    <div v-else class="lg:max-w-[700px] my-8 lg:my-12 self-center lg:mx-auto p-6">
+    <article v-else class="lg:max-w-[700px] my-8 lg:my-12 self-center lg:mx-auto p-6">
         <h1 class="text-3xl lg:text-4xl font-bold mb-2 xl:mb-3">{{ post.title }}</h1>
         <div class="text-sm text-yellow-800 lg:text-base font-medium mb-6 lg:mb-10 xl:mb-12 2xl:mb-14">
             <span class="">{{ formatDate(post.createdAt) }}</span>
@@ -74,5 +89,5 @@ onMounted(async () => {
         </div>
         <div class="text-[#363737] mb-2 font-serif text-[18px] lg:text-[19px] leading-9 prose prose-h1:font-sans prose-h2:font-sans prose-h3:font-sans prose-h4:font-sans prose-h5:font-sans"
             v-html="post.content"></div>
-    </div>
+    </article>
 </template>

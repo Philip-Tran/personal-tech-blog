@@ -4,6 +4,8 @@
 <template>
   <div>
     <SharedAppHeader />
-    <slot />
+    <main>
+      <slot />
+    </main>
   </div>
 </template>
