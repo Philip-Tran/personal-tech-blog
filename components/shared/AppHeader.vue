@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { MenuIcon } from 'lucide-vue-next';
+import { Github, MenuIcon } from 'lucide-vue-next';
 const user = useSupabaseUser()
 const supabase = useSupabaseClient()
 </script>
@@ -16,7 +16,21 @@ const supabase = useSupabaseClient()
         </NuxtLink>
       </div>
       <div class="lg:w-2/3 flex items-center justify-end  space-x-1 lg:space-x-9">
-        <nav>
+        <nav class="flex flex-row xl:space-x-8">
+          <div class="flex items-center space-x-1 lg:space-x-3 xl:space-x-8">
+            <NuxtLink to="https://github.com/Philip-Tran/" external target="_blank"
+              class="hover:text-orange-500 hover:underline">
+              <Button variant="secondary">
+                <Github />
+                GitHub
+              </Button>
+            </NuxtLink>
+            <NuxtLink to="https://phil-tran-dev.vercel.app/" external>
+              <Button variant="outline">
+                My Portfolio
+              </Button>
+            </NuxtLink>
+          </div>
           <div v-if="user && user.email === 'quyetcoccoc@gmail.com'" class="flex items-center space-x-1 lg:space-x-3">
             <NuxtLink to="/dashboard">
               <Button variant="ghost">Dashboard</Button>
