@@ -3,7 +3,9 @@ definePageMeta({
     layout: "(client)-app-default-layout",
 });
 
-
+useSeoMeta({
+    ogImage: "/images/phil-tran-social-share.png"
+})
 
 import { getReadingTime, formatDate } from "~/lib/utils";
 import { type Post } from "~/stores/client/PostStore";
