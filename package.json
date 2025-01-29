@@ -57,6 +57,7 @@
     "sass-embedded": "^1.83.0",
     "typescript": "^5.7.2"
   },
+  "packageManager": "npm@11.0.0",
   "engines": {
     "node": "20.12.2",
     "npm": ">=10.0.0"
