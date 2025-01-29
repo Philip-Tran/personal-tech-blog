@@ -7,11 +7,11 @@ module.exports = {
   darkMode: ["class"],
   safelist: ["dark"],
   prefix: "",
-  safelist: [
-    {
-      pattern: /token.*/,
-    },
-  ],
+  // safelist: [
+  //   {
+  //     pattern: /token.*/,
+  //   },
+  // ],
   theme: {
     container: {
       center: true,

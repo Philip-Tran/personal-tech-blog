@@ -52,7 +52,6 @@ onBeforeMount(async () => {
                             <span class="font-medium text-yellow-800">{{ formatDate(post.createdAt) }}</span>
                             <Dot /> <span class="uppercase">{{ getReadingTime(post.content) }}</span>
                         </div>
-
                     </div>
                     <div class="lg:px-3">
                         <Separator class="mt-3 lg:mt-5" />

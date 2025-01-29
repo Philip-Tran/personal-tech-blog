@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@nuxtjs/supabase",
     "nuxt-tiptap-editor",
+    "@stefanobartoletti/nuxt-social-share",
     "@pinia/nuxt",
     "pinia-plugin-persistedstate/nuxt",
     [
@@ -20,6 +21,10 @@ export default defineNuxtConfig({
       },
     ],
   ],
+  socialShare: {
+    baseUrl: "https://phil-tran-blog.vercel.app", // required!
+    // other optional module options
+  },
   plugins: ["~/plugins/prism.js"],
   piniaPluginPersistedstate: {
     storage: "cookies",

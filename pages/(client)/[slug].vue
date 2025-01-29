@@ -3,10 +3,6 @@ definePageMeta({
     layout: "(client)-app-default-layout",
 });
 
-useSeoMeta({
-    ogImage: "/images/phil-tran-social-share.png"
-})
-
 import { getReadingTime, formatDate } from "~/lib/utils";
 import { type Post } from "~/stores/client/PostStore";
 import { usePostStore } from "~/stores/client/PostStore";
@@ -69,13 +65,11 @@ watch(post, () => {
     }
 }, { immediate: true })
 
-
-// social share
-const shareToFacebook = () => {
-    const shareUrl = encodeURIComponent("http://phil-tran-blog.vercel.app");
-    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
-    window.open(facebookUrl, "_blank");
-}
+const dynamicTitle = computed(() => post.value?.title || "Phil Tran");
+useSeoMeta({
+    title: () => dynamicTitle.value,
+    ogImage: "/images/phil-tran-social-share.png"
+})
 </script>
 
 <template>
@@ -102,9 +96,7 @@ const shareToFacebook = () => {
             <div class="flex space-x-3 lg:space-x-4 items-center my-3">
                 <span class="font-bold">Share: </span>
                 <div>
-                    <Button @click="shareToFacebook" variant="outline" class="rounded-full w-10 h-10">
-                        <Facebook />
-                    </Button>
+                    <SocialShare network="facebook" :styled="false" class="border-slate-400 py-2 px-4 rounded" />
                 </div>
             </div>
         </div>
